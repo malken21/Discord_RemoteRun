@@ -1,0 +1,9 @@
+{
+    "token": "",
+    "ServerID": "",
+    "command": {
+        "python": "python3 run/run.py",
+        "nodejs": "node run/run.js"
+    },
+    "timeout": 5000
+}
