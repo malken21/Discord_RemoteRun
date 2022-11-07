@@ -10,10 +10,10 @@ const client = new Client({
 });
 
 const { token, ServerID } = require("./Config.json");
-const { start, commands } = require("./command");
+const { commands, result } = require("./command");
+const { python, nodejs } = require("./run");
 
 client.on(Events.ClientReady, async () => {
-
     client.application.commands.set([commands], ServerID);//コマンド生成
     console.log(`login: (${client.user.tag})`);
 });
@@ -29,7 +29,18 @@ client.on(Events.InteractionCreate, async interaction => {
         const data = [];
         data.unshift(content.shift());
         data.push(content.join("\n"));
-        interaction.editReply(await start(data));
+        switch (content[0]) {
+            case "js":
+                const js = await nodejs(content[1]);
+                interaction.editReply(await result(js));
+                return;
+            case "py":
+                const py = await python(content[1]);
+                interaction.editReply(await result(py));
+                return;
+            default:
+                interaction.editReply("実行するものがありません");
+        }
     } else {
         interaction.reply("実行するものがありません");
     }
