@@ -31,11 +31,13 @@ function writeFile(fileName, text) {
 function run(text) {
     return new Promise((resolve) => {
         const exec = childProcess.exec(text, (error, stdout, stderr) => {
+            console.log(error)
+            console.log(stdout)
+            console.log(stderr)
             if (error) {
                 resolve({ log: stderr, isError: true });
                 return;
-            }
-            else {
+            } else {
                 resolve({ log: stdout });
             }
         });
