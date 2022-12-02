@@ -29,7 +29,6 @@ client.on(Events.InteractionCreate, async interaction => {
         const data = [];
         data.unshift(content.shift());
         data.push(content.join("\n"));
-        console.log(content)
         switch (data[0]) {
             case "js":
                 const js = await nodejs(content[0]);
