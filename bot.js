@@ -31,11 +31,11 @@ client.on(Events.InteractionCreate, async interaction => {
         data.push(content.join("\n"));
         switch (data[0]) {
             case "js":
-                const js = await nodejs(content[0]);
+                const js = await nodejs(data[1]);
                 interaction.editReply(await result(js));
                 return;
             case "py":
-                const py = await python(content[0]);
+                const py = await python(data[1]);
                 interaction.editReply(await result(py));
                 return;
             default:
